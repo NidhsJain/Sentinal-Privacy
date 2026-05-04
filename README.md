@@ -1,86 +1,116 @@
-# 🔐 Sentinal Privacy – Privacy vs Convenience Analysis
+# 🔐 Sentinel Privacy – AI-Driven Privacy Risk Analysis & Advisory System
 
-## 📌 Overview
-
-**Sentinal Privacy** is a data-driven application designed to analyze and highlight the trade-off between **user privacy** and **digital convenience**.
-
-The project helps users understand how their choices (permissions, data sharing, etc.) impact both:
-
-* 🔒 Privacy level
-* ⚡ Convenience level
-
-It provides intelligent recommendations to help users maintain a better balance.
+Sentinel Privacy is a Streamlit-based web application powered by a local **Ollama LLM + RAG chatbot** that analyzes user privacy risks and provides actionable recommendations.
 
 ---
 
-## 🎯 Objectives
+## 🚀 Features
 
-* Analyze user behavior related to privacy decisions
-* Quantify privacy vs convenience trade-offs
-* Provide meaningful insights through data visualization
-* Suggest personalized recommendations
-
----
-
-## 🛠️ Tech Stack
-
-* **Frontend:** HTML, CSS, JavaScript
-* **Backend:** Python
-* **Framework (if used):** Streamlit
-* **Data Processing:** Pandas, NumPy
-* **Visualization:** Matplotlib / Seaborn
+* 📊 Privacy Risk Dashboard
+* 🤖 AI Chatbot (RAG-based using Ollama)
+* 📁 Excel-based knowledge ingestion
+* 🔍 Personalized privacy recommendations
 
 ---
 
-## ⚙️ Features
+## 🧰 Tech Stack
 
-* 📊 Privacy vs Convenience scoring system
-* 🧠 Intelligent recommendations engine
-* 📋 User questionnaire for data collection
-* 📈 Dashboard for insights and analysis
-* 🔍 Comparative analysis of user choices
-* 💬 Interactive UI for better user experience
+* **Frontend:** Streamlit
+* **Backend:** Python (RAG-based chatbot)
+* **LLM:** Ollama (`gemma3:4b`)
+* **Embeddings:** `mxbai-embed-large`
 
 ---
 
-## 📂 Project Structure
+## ⚙️ Prerequisites
 
-```
-Privacy_Convenience_Analysis/
-│── app.py
-│── pages/
-│   ├── home.py
-│   ├── analysis.py
-│   ├── dashboard.py
-│   ├── questionnaire.py
-│   └── recommendations.py
-│── utils/
-│   ├── db.py
-│   ├── scoring.py
-│   ├── questions.py
-│   └── config.py
-│── requirements.txt
-│── README.md
-```
+Make sure you have installed:
+
+* Python 3.9 or above
+* Git
+* Ollama → https://ollama.com
 
 ---
 
-## 🚀 How to Run the Project
+## 🧠 Setup Instructions
 
-### 1️⃣ Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/NidhsJain/Sentinal-Privacy.git
 cd Sentinal-Privacy
 ```
 
-### 2️⃣ Install Dependencies
+---
+
+### 2. Create & Activate Virtual Environment (Recommended)
+
+```bash
+python -m venv antigravity
+antigravity\Scripts\activate   # Windows
+```
+
+---
+
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+pip install pandas numpy ollama openpyxl fastapi uvicorn
 ```
 
-### 3️⃣ Run the Application
+---
+
+### 4. Setup Ollama Models
+
+```bash
+ollama pull gemma3:4b
+ollama pull mxbai-embed-large
+```
+
+👉 Make sure Ollama is running in the background.
+
+---
+
+### 5. Setup Environment Variables
+
+Create a `.env` file from template:
+
+```bash
+copy .env.example .env
+```
+
+Edit `.env` and add values:
+
+```env
+OLLAMA_MODEL=gemma3:4b
+BASE_URL=http://localhost:8000
+```
+
+---
+
+## ▶️ Running the Project
+
+### 🔹 Option 1: One-click Run (Recommended)
+
+```bash
+run_all.bat
+```
+
+---
+
+### 🔹 Option 2: Manual Run
+
+#### Step 1: Start Backend (RAG Chatbot)
+
+```bash
+cd SGP_6THSEM_CHATBOT\SGP_6THSEM_CHATBOT
+python rag_file.py
+```
+
+---
+
+#### Step 2: Start Frontend (New Terminal)
 
 ```bash
 streamlit run app.py
@@ -88,51 +118,58 @@ streamlit run app.py
 
 ---
 
-## 📊 Working Explanation (Simple)
+## 🌐 Access the Application
 
-1. User answers a questionnaire
-2. System evaluates responses
-3. Scores privacy vs convenience
-4. Generates insights + recommendations
-5. Displays results via dashboard
+* Streamlit UI → http://localhost:8501 *(default)*
+* Backend API → http://localhost:8000 *(default, if used)*
 
----
-
-## 📸 Screenshots
-
-(Add screenshots here for better presentation)
+⚠️ If ports are busy, they may change (check terminal output).
 
 ---
 
-## 🔐 Key Learning Outcomes
+## ⚠️ Important Notes
 
-* Understanding privacy vs usability trade-offs
-* Data analysis and visualization
-* Backend logic design in Python
-* Building interactive dashboards
-* Real-world problem solving
+* First run may take time (embedding generation)
+* If Excel files are updated, delete:
 
----
+```bash
+vector_store.pkl
+```
 
-## 🌍 Real-World Applications
-
-* Data privacy awareness tools
-* Digital wellbeing platforms
-* Enterprise security analysis
-* User behavior analytics
+* Do NOT upload `.env` (contains sensitive data)
 
 ---
 
-## 🚧 Future Enhancements
+## 📁 Project Structure
 
-* AI-based personalized recommendations
-* Integration with real-world apps (Google, Meta, etc.)
-* Mobile application version
-* Advanced analytics using ML models
-
+```
+Sentinal-Privacy/
+│
+├── SGP_6THSEM_CHATBOT/
+├── pages/
+├── utils/
+├── data/
+├── app.py
+├── run_all.bat
+├── requirements.txt
+├── .env.example
+└── README.md
+```
 
 ---
 
-## 📌 Note
+## 👨‍💻 Author
 
-This project is developed as part of academic learning and aims to solve real-world privacy concerns in a simplified manner.
+**Nidhi Jain**
+
+---
+
+## 📌 Future Improvements
+
+* Convert backend to FastAPI API service
+* Improve UI/UX
+* Add cloud deployment
+
+---
+
+## ⭐ If you found this useful, consider starring the repo!
